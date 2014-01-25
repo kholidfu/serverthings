@@ -80,7 +80,7 @@ Panduan Install dan Setting Ubuntu Server dengan nginx dan uwsgi
      #+BEGIN_SRC sh
      server {
          listen        80;
-         server_name   www.soundrenalin.com;
+         server_name   www.example.com;
          location / { try_files $uri @app; }
          location @app {
              include uwsgi_params;
@@ -95,14 +95,14 @@ Panduan Install dan Setting Ubuntu Server dengan nginx dan uwsgi
 
      #+BEGIN_SRC sh
      [uwsgi]
-         chdir = /home/sopier/soundrenalin.com
+         chdir = /home/sopier/example.com
          uid = www-data
          gid = www-data
          chmod-socket = 666
          socket = /tmp/uwsgi.sock
          module = run
          callable = app
-         virtualenv = /home/sopier/soundrenalin.com
+         virtualenv = /home/sopier/example.com
          processes = 1
      #+END_SRC
 
