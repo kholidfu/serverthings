@@ -1,4 +1,4 @@
-Panduan Install dan Setting Ubuntu Server dengan nginx dan uwsgi
+Panduan Install dan Setting Ubuntu Server dengan =nginx= dan =uwsgi=
 
 * Case Study
   Dokumentasi ini menggunakan /real case study/ pada =digitalocean= dengan 
@@ -59,8 +59,8 @@ Panduan Install dan Setting Ubuntu Server dengan nginx dan uwsgi
 ** Install venv
    #+BEGIN_SRC sh
     sudo pip install virtualenv
-    virtualenv soundrenalin.com
-    cd soundrenalin.com
+    virtualenv example.com
+    cd example.com
     source bin/activate
     pip install flask
     pip install uwsgi
