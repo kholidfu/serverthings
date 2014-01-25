@@ -14,10 +14,12 @@
 
 * Testing
 ** Database Operation
+   #+BEGIN_SRC sh
    > use mydatabase
    > db.table.ensureIndex({nickname: 'text'})
    > db.table.insert({'nickname': 'kholid'})
    > db.table.runCommand('text', {search: 'kholid'})
+   #+END_SRC
   
    Pertama kita buat database dengan nama mydatabase, kemudian kita membuat 
    table (collection) dengan nama 'table', kemudian kita buat field dengan 
