@@ -1,0 +1,28 @@
+* Setting Server
+** Upgrade paket mongodb
+   Jika menggunakan Ubuntu 13.04, versi default bawaan dari paket mongodb 
+   2.2.x, sementara fitur full text search baru disertakan pada versi
+   2.4.x. Untuk itu, silakan upgrade (install) mengikuti tutorial berikut:
+
+   http://docs.mongodb.org/manual/tutorial/install-mongodb-on-ubuntu/
+
+   Sunting berkas /etc/mongodb.conf, tambahkan baris berikut:
+  
+   setParameter=textSearchEnabled=true
+
+* Testing
+** Database Operation
+   > use mydatabase
+   > db.table.ensureIndex({nickname: 'text'})
+   > db.table.insert({'nickname': 'kholid'})
+   > db.table.runCommand('text', {search: 'kholid'})
+  
+   Pertama kita buat database dengan nama mydatabase, kemudian kita membuat 
+   table (collection) dengan nama 'table', kemudian kita buat field dengan 
+   nama 'nickname', dan kita tetapkan bahwa jenis data yang akan kita
+   kita masukkan nantinya adalah 'text'.
+
+   Langkah selanjutnya, kita memasukkan baris data pertama kita, yakni
+   'kholid', kemudian kita uji apakah fitur full text search sudah berjalan
+   dengan baik dengan menjalankan perintah ke-4 di atas.
+   
