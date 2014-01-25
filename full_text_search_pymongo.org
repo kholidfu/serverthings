@@ -30,3 +30,9 @@
    'kholid', kemudian kita uji apakah fitur full text search sudah berjalan
    dengan baik dengan menjalankan perintah ke-4 di atas.
    
+   Untuk melakukan pencarian di Python, gunakan syntax berikut:
+   #+BEGIN_SRC sh     >>> import pymongo
+     >>> c = pymongo.Connection()
+     >>> db = c['images']
+     >>> db.command('text', 'image', search="keyword")   
+   #+END_SRC
