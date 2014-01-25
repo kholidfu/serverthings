@@ -1,0 +1,117 @@
+Panduan Install dan Setting Ubuntu Server dengan nginx dan uwsgi
+
+* Case Study
+  Dokumentasi ini menggunakan /real case study/ pada =digitalocean= dengan 
+  ubuntu server 12.10 [13.04] 32bit / 64bit.
+
+  Setelah aplikasi =Flask= selesai dikembangkan di =localhost=, 
+  langkah berikutnya tentu adalah mengunggah dan melakukan konfigurasi pada
+  /server/.
+
+  Berikut kurang lebih susunan direktori dari aplikasi =Flask= yang terdapat
+  dalam komputer lokal penulis:
+
+  #+BEGIN_SRC conf
+
+  /home/sopier/soundrenalin.com/
+    app/
+      __init__.py
+      static/
+      templates/
+      views.py
+    bin/
+    etc/
+    include/
+    lib/
+    local/
+    share/
+    run.py
+  #+END_SRC
+  
+* Persiapan di Localhost
+  Sekarang saatnya menyiapkan berkas dan direktori supaya mudah diunggah
+  ke /server/ nantinya.
+** Compress direktori app/
+   Aplikasi Flask penulis terdapat dalam direktori =app/= ini, maka direktori
+   inilah yang akan dikompress untuk memudahkan proses unggah. Jika Anda 
+   memiliki direktori atau berkas lain, silakan unggah juga berkas dan atau
+   direktori tersebut.
+** Upload files / directories
+   #+BEGIN_SRC sh
+     scp app.tar.gz sopier@xxx.xxx.xxx.xxx:
+     scp run.py / cyclone.py
+   #+END_SRC
+* Persiapan di Server
+** Tambahkan user baru ke dalam Ubuntu
+   Meskipun mungkin, namun penulis menghindari menggunakan /user/ =root= sebisa
+   mungkin. Untuk itu ikuti langkah berikut untuk membuat /user/ baru.
+
+   #+BEGIN_SRC sh
+    adduser sopier
+    adduser sopier sudo
+   #+END_SRC
+** Install paket buat devel
+   #+BEGIN_SRC sh
+    sudo apt-get install build-essential python-dev
+    sudo apt-get install python-pip
+    sudo apt-get install nginx
+   #+END_SRC
+** Install venv
+   #+BEGIN_SRC sh
+    sudo pip install virtualenv
+    virtualenv soundrenalin.com
+    cd soundrenalin.com
+    source bin/activate
+    pip install flask
+    pip install uwsgi
+    #+END_SRC
+** SUnting berkas run.py 
+
+    #+BEGIN_SRC py
+     #!/usr/bin/env python
+     from app import app
+    
+     if __name__ == "__main__": # tambahkan baris ini
+         app.run(debug=True)
+    #+END_SRC
+
+** Sunting berkas berikut /etc/nginx/sites-available/default:
+
+     #+BEGIN_SRC sh
+     server {
+         listen        80;
+         server_name   www.soundrenalin.com;
+         location / { try_files $uri @app; }
+         location @app {
+             include uwsgi_params;
+             uwsgi_pass unix:/tmp/uwsgi.sock;
+         }
+     }
+     #+END_SRC
+
+** Buat berkas uwsgi.ini 
+   Tempatkan berkas pada direktori root aplikasi Anda (sejajar dgn run.py)
+   Isi dari berkas tersebut adalah:
+
+     #+BEGIN_SRC sh
+     [uwsgi]
+         chdir = /home/sopier/soundrenalin.com
+         uid = www-data
+         gid = www-data
+         chmod-socket = 666
+         socket = /tmp/uwsgi.sock
+         module = run
+         callable = app
+         virtualenv = /home/sopier/soundrenalin.com
+         processes = 1
+     #+END_SRC
+
+** Jalankan perintah uwsgi berikut:
+     #+BEGIN_SRC sh
+    uwsgi uwsgi.ini
+    #+END_SRC
+* Selesai
+  Seharusnya aplikasi =Flask= Anda sudah dapat Anda akses baik menggunakan 
+  alamat =IP= maupun menggunakan nama /domain/ (jika sudah /resolve/ proses
+  propagasinya).
+  /Have fun with Python, Flask and Ubuntu!/
