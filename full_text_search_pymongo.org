@@ -7,8 +7,10 @@
    http://docs.mongodb.org/manual/tutorial/install-mongodb-on-ubuntu/
 
    Sunting berkas /etc/mongodb.conf, tambahkan baris berikut:
-  
+
+   #+BEGIN_SRC sh
    setParameter=textSearchEnabled=true
+   #+END_SRC
 
 * Testing
 ** Database Operation
