@@ -36,3 +36,5 @@
      >>> db = c['images']
      >>> db.command('text', 'image', search="keyword")   
    #+END_SRC
+
+   Dimana image disini adalah nama table.
