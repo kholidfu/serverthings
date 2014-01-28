@@ -1,0 +1,22 @@
+* Langkah-langkah agar bisa login ke server tanpa harus memasukkan password
+** Langkah 1: Create public and private keys using ssh-keygen di localhost
+#+BEGIN_SRC sh
+  
+  $ ssh-keygen
+  
+#+END_SRC
+
+   Berikutnya muncul dialog konfirmasi, tekan enter-enter saja untuk next
+** Langkah 2: Copy public key ke remote host using ssh-copy-id
+   #+BEGIN_SRC sh
+     
+     ssh-copy-id -i ~/.ssh/id_rsa.pub user@www.example.com
+     
+   #+END_SRC
+** Langkah 3: Coba login tanpa password
+   #+BEGIN_SRC sh    
+     ssh user@example.com
+   #+END_SRC
+
+Jika tidak ada kesalahan, Anda sekarang sudah bisa login ke server 
+tanpa harus memasukkan password! Voila
