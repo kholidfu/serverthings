@@ -1,0 +1,14 @@
+* Install ntop on ubuntu server
+  #+BEGIN_SRC text
+    
+    sudo apt-get install ntop
+    sudo install -d /var/lib/ntop
+    sudo install -o nobody -d /var/lib/ntop/interfaces
+    sudo install -o nobody -d /var/lib/ntop/rrd
+    sudo chmod -Rf 777 /var/lib/ntop/rrd
+    
+  #+END_SRC
+
+* Reference
+- [ ] [[http://addicted-to-it.blogspot.com/2007/11/ntop-does-not-display-historical-graph.html][http://addicted-to-it.blogspot.com/]]
+- [ ] [[http://johntellsall.blogspot.com/2009/11/ntop-and-rrd.html][http://johntellsall.blogspot.com/]]
