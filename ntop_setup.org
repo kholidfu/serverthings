@@ -9,6 +9,15 @@
     
   #+END_SRC
 
+  Setelah itu, jalankan =ntop= dengan mengetikkan:
+
+  #+BEGIN_SRC sh    
+    sudo ntop -i wlan0  
+  #+END_SRC
+
+  Dan sekarang buka /browser/ Anda, dan ketikkan URL: 
+  /http://127.0.0.1:3000/
+
 * Reference
 - [ ] [[http://addicted-to-it.blogspot.com/2007/11/ntop-does-not-display-historical-graph.html][http://addicted-to-it.blogspot.com/]]
 - [ ] [[http://johntellsall.blogspot.com/2009/11/ntop-and-rrd.html][http://johntellsall.blogspot.com/]]
