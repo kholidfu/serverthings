@@ -18,6 +18,9 @@
   Dan sekarang buka /browser/ Anda, dan ketikkan URL: 
   /http://127.0.0.1:3000/
 
+  Ini contoh salah satu server yang sudah saya pasangi ntop
+  /http://162.243.59.186:3000/thptStats.html/
+
 * Reference
 - [ ] [[http://addicted-to-it.blogspot.com/2007/11/ntop-does-not-display-historical-graph.html][http://addicted-to-it.blogspot.com/]]
 - [ ] [[http://johntellsall.blogspot.com/2009/11/ntop-and-rrd.html][http://johntellsall.blogspot.com/]]
