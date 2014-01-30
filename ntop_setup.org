@@ -2,6 +2,7 @@
   #+BEGIN_SRC text
     
     sudo apt-get install ntop
+    sudo apt-get install rrdtool
     sudo install -d /var/lib/ntop
     sudo install -o nobody -d /var/lib/ntop/interfaces
     sudo install -o nobody -d /var/lib/ntop/rrd
