@@ -58,3 +58,17 @@
 
    Setelah itu buat /database/ terlebih dahulu, kemudian jalankan 
    =ensureIndex= melalui mongo console, baru lakukan =mongoimport=.
+** Import
+   Untuk melakukan import jalankan perintah berikut:
+   #+BEGIN_SRC sh
+     
+     mongoimport --db terms --collection term --file terms.json
+     
+   #+END_SRC
+** Export
+   Untuk melakukan export jalankan perintah berikut:
+   #+BEGIN_SRC sh
+     
+     mongoexport --db terms --collection term --out terms.json
+     
+   #+END_SRC
