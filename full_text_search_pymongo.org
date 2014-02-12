@@ -38,3 +38,23 @@
    #+END_SRC
 
    Dimana image disini adalah nama table.
+* Tips
+** Import Big Data
+   Untuk melakukan import database fulltext, biar tidak /error/, buat dulu
+   swap di hosting Anda, dengan cara:
+
+  #+BEGIN_SRC sh
+    
+    # create new partition
+    dd if=/dev/zero of=/swapfile bs=1M count=1024
+    # set as swap
+    mkswap /swapfile
+    # activate the swap once
+    swapon /swapfile
+    # run every machine reboot
+    /swapfile swap swap defaults 0 0 # add into /etc/fstab
+    
+  #+END_SRC
+
+   Setelah itu buat /database/ terlebih dahulu, kemudian jalankan 
+   =ensureIndex= melalui mongo console, baru lakukan =mongoimport=.
