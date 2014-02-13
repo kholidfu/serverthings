@@ -89,6 +89,31 @@ Panduan Install dan Setting Ubuntu Server dengan =nginx= dan =uwsgi=
      }
      #+END_SRC
 
+   Untuk multiple site, bedakan nama berkas uwsgi.sock, berikut contoh:
+
+   #+BEGIN_SRC sh
+     
+     server {
+         listen        80;
+         server_name   www.example1.com;
+         location / { try_files $uri @app; }
+         location @app {
+             include uwsgi_params;
+             uwsgi_pass unix:/tmp/uwsgi1.sock;
+         }
+     }
+     server {
+         listen        80;
+         server_name   www.example2.com;
+         location / { try_files $uri @app; }
+         location @app {
+             include uwsgi_params;
+             uwsgi_pass unix:/tmp/uwsgi2.sock;
+         }
+     }
+     
+   #+END_SRC
+
 ** Buat berkas uwsgi.ini 
    Tempatkan berkas pada direktori root aplikasi Anda (sejajar dgn run.py)
    Isi dari berkas tersebut adalah:
