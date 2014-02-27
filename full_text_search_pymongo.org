@@ -12,6 +12,12 @@
    setParameter=textSearchEnabled=true
    #+END_SRC
 
+   Kemudian, /restart/ mongodb Anda:
+
+   #+BEGIN_SRC sh
+     sudo service mongodb restart
+   #+END_SRC
+
 * Testing
 ** Database Operation
    #+BEGIN_SRC sh
