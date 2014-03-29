@@ -52,9 +52,7 @@ Panduan Install dan Setting Ubuntu Server dengan =nginx= dan =uwsgi=
    #+END_SRC
 ** Install paket buat devel
    #+BEGIN_SRC sh
-    sudo apt-get install build-essential python-dev
-    sudo apt-get install python-pip
-    sudo apt-get install nginx
+    sudo apt-get install build-essential python-dev python-pip nginx emacs24-nox
    #+END_SRC
 ** Install venv
    #+BEGIN_SRC sh
@@ -65,6 +63,44 @@ Panduan Install dan Setting Ubuntu Server dengan =nginx= dan =uwsgi=
     pip install flask
     pip install uwsgi
     #+END_SRC
+** Install supervisor
+   #+BEGIN_SRC sh
+    sudo pip install supervisor
+    #+END_SRC
+** Setting Supervisor
+   Buat berkas baru di /etc/supervisord.conf dan isikan konfigurasi berikut:
+   #+BEGIN_SRC text
+     
+     [unix_http_server]
+     file=/tmp/uwsgi.sock   ; (the path to the socket file)
+     
+     [supervisord]
+     logfile=/tmp/supervisord.log ; (main log file;default $CWD/supervisord.log)
+     logfile_maxbytes=50MB       ; (max main logfile bytes b4 rotation;default 50MB)
+     logfile_backups=10          ; (num of main logfile rotation backups;default 10)
+     loglevel=info               ; (log level;default info; others: debug,warn,trace)
+     pidfile=/tmp/supervisord.pid ; (supervisord pidfile;default supervisord.pid)
+     nodaemon=false              ; (start in foreground if true;default false)
+     minfds=1024                 ; (min. avail startup file descriptors;default 1024)
+     minprocs=200
+     
+     [rpcinterface:supervisor]
+     supervisor.rpcinterface_factory = supervisor.rpcinterface:make_main_rpcinterface
+     
+     [supervisorctl]
+     logfile=/tmp/supervisord.log ; (main log file;default $CWD/supervisord.log)
+     serverurl=unix:///tmp/uwsgi.sock ; use a unix:// URL
+     
+     [program:example.com]
+     command=/home/sopier/example.com/bin/uwsgi --socket /tmp/uwsgi.sock --module run --callable app -H /home/sopier/example.com/ --chdir /home/sopier/example.com/ --chmod-socket=666 --processes=5
+     directory=/home/sopier/example.com/
+     autostart=true
+     autorestart=true
+     stdout_logfile=/tmp/example.log
+     redirect_stderr=true
+     stopsignal=QUIT
+     
+   #+END_SRC
 ** SUnting berkas run.py 
 
     #+BEGIN_SRC py
