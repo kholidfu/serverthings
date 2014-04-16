@@ -1,0 +1,15 @@
+Step:
+* Tambahkan A record di hosting, misal:
+  autos dengan IP: 162.xxx.xxx.xx
+  mobile dengan IP: 162.xx.xxx.xx
+* Tunggu sampai propagasi selesai
+* Di Server:
+  - Edit /etc/nginx/nginx.conf
+    aktifkan bucket menjadi 64
+  - Sunting di /etc/nginx/sites-available/default
+    tambahkan settingan seperti halnya ketika akan menambahkan domain baru,
+    jangan lupa bedakan file uwsgi.sock nya misal dengan memberi nama 
+    uwsgi2.sock
+  - restart nginx
+  - Jika Anda menggunakan supervisor, jangan lupa menambahkan program, 
+    selaiknya menambahkan uwsgi baru pada penambahan domain.
