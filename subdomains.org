@@ -1,7 +1,6 @@
 Step:
-* Tambahkan A record di hosting, misal:
-  autos dengan IP: 162.xxx.xxx.xx
-  mobile dengan IP: 162.xx.xxx.xx
+* Tambahkan CNAME record di hosting, misal:
+  Isi * dan @
 * Tunggu sampai propagasi selesai
 * Di Server:
   - Edit /etc/nginx/nginx.conf
