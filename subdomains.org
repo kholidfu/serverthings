@@ -2,8 +2,8 @@ Untuk lebih memudahkan manajemen server atau manajemen aplikasi web, kadang
 kita perlu membuatkan satu atau lebih /subdomain/ pada domain utama kita.
 Sebagai contoh:
 
-www1.mydomain.com
-www2.mydomain.com
+blog.mydomain.com
+api.mydomain.com
 
 Bagaimana caranya?
 
