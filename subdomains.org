@@ -1,14 +1,53 @@
-Step:
-* Tambahkan CNAME record di hosting, misal:
-  Isi * dan @
-* Tunggu sampai propagasi selesai
-* Di Server:
+Untuk lebih memudahkan manajemen server atau manajemen aplikasi web, kadang 
+kita perlu membuatkan satu atau lebih /subdomain/ pada domain utama kita.
+Sebagai contoh:
+
+www1.mydomain.com
+www2.mydomain.com
+
+Bagaimana caranya?
+
+* Kasus I
+Untuk kasus I, asumsikan kita akan menambahkan satu atau beberapa subdomain
+dengan IP yang sama dengan domain induk (berada pada satu server).
+
+** Tambahkan CNAME record di hosting:
+   Add New CNAME Record, kemudian isikan: Isi * dan @, simpan dan tunggu
+   sampai proses propagasi selesai.
+** Pengaturan nginx di server:
   - Edit /etc/nginx/nginx.conf
-    aktifkan bucket menjadi 64
-  - Sunting di /etc/nginx/sites-available/default
+    Cari baris berikut dan aktifkan dengan cara menghilangkan tanda # di 
+    awal baris.
+    #+BEGIN_SRC sh
+      # server_names_hash_bucket_size 64;
+      
+      menjadi 
+      
+      server_names_hash_bucket_size 64;
+    #+END_SRC
+  - Sunting berkas /etc/nginx/sites-available/default
     tambahkan settingan seperti halnya ketika akan menambahkan domain baru,
     jangan lupa bedakan file uwsgi.sock nya misal dengan memberi nama 
-    uwsgi2.sock
+    =blog.sock= dan =api.sock=.
   - restart nginx
   - Jika Anda menggunakan supervisor, jangan lupa menambahkan program, 
     selaiknya menambahkan uwsgi baru pada penambahan domain.
+
+* Kasus II
+  Pada kasus ini, kita akan menambahkan 2 subdomain pada domain utama. 
+  Subdomain pertama, =blog.mydomain.com= berada pada server dengan IP
+  =1.2.3.4=, sedangkan server subdomain kedua, =api.mydomain.com= memiliki
+  IP =5.6.7.8=.
+
+  Bagaimana cara konfigurasinya:
+**  Aktifkan wildcard CNAME seperti pada kasus di atas.
+    Dengan menambahkan tanda * dan @, ini berarti kita dapat menggunakan
+    semua kata di depan mydomain.com, tentunya selama sudah diaktifkan di
+    nginx dulu. Ini juga berarti semua subdomain akan mengarah pada IP
+    =1.2.3.4=.
+** Buat perkecualian
+   Nah, di sini baru kita buat perkecualian, khusus untuk subdomain 
+   api.mydomain.com, arahkan request ke server =5.6.7.8=
+** Pengaturan di hosting
+** Pengaturan di nginx server
+   Sama dengan kasus I di atas.
