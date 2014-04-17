@@ -67,5 +67,7 @@ dengan IP yang sama dengan domain induk (berada pada satu server).
    Nah, di sini baru kita buat perkecualian, khusus untuk subdomain 
    api.mydomain.com, arahkan request ke server =5.6.7.8=
 ** Pengaturan di hosting
+   Tambahkan A record kemudian isikan =api= dan =5.6.7.8=. Tambahkan lagi
+   CNAME record dan isikan: =*.api= dan =api.mydomain.com=
 ** Pengaturan di nginx server
    Sama dengan kasus I di atas.
