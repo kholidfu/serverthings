@@ -3,6 +3,7 @@ kita perlu membuatkan satu atau lebih /subdomain/ pada domain utama kita.
 Sebagai contoh:
 
 blog.mydomain.com
+
 api.mydomain.com
 
 Bagaimana caranya?
