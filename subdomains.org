@@ -13,12 +13,30 @@ dengan IP yang sama dengan domain induk (berada pada satu server).
 
 ** Tambahkan CNAME record di hosting:
    Add New CNAME Record, kemudian isikan: Isi * dan @, simpan dan tunggu
-   sampai proses propagasi selesai.
+   sampai proses propagasi selesai. Lakukan pengecekan dengan mengetikkan
+   perintah berikut:
+   #+BEGIN_SRC text
+     
+     $ host blog.mydomain.com
+     blog.mydomain.com is an alias for mydomain.com.
+     mydomain.com has address 1.2.3.4
+
+     $ host foo.mydomain.com
+     foo.mydomain.com is an alias for mydomain.com.
+     mydomain.com has address 1.2.3.4
+
+     $ host pret.mydomain.com
+     pret.mydomain.com is an alias for mydomain.com.
+     mydomain.com has address 1.2.3.4
+          
+   #+END_SRC
+   Karena kita menggunakan wildcard CNAME, subdomain apapun adalah
+   merupakan alias dari server 1.2.3.4.
 ** Pengaturan nginx di server:
   - Edit /etc/nginx/nginx.conf
     Cari baris berikut dan aktifkan dengan cara menghilangkan tanda # di 
     awal baris.
-    #+BEGIN_SRC sh
+    #+BEGIN_SRC text
       # server_names_hash_bucket_size 64;
       
       menjadi 
