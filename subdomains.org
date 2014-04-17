@@ -71,3 +71,6 @@ dengan IP yang sama dengan domain induk (berada pada satu server).
    CNAME record dan isikan: =*.api= dan =api.mydomain.com=
 ** Pengaturan di nginx server
    Sama dengan kasus I di atas.
+
+* Referensi
+  [[https://www.digitalocean.com/community/articles/how-to-set-up-and-test-dns-subdomains-with-digitalocean-s-dns-panel][digitalocean]]
