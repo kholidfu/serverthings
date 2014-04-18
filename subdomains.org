@@ -59,7 +59,7 @@ dengan IP yang sama dengan domain induk (berada pada satu server).
   IP =5.6.7.8=.
 
   Bagaimana cara konfigurasinya:
-**  Aktifkan wildcard CNAME seperti pada kasus di atas.
+** Aktifkan wildcard CNAME seperti pada kasus di atas.
     Dengan menambahkan tanda * dan @, ini berarti kita dapat menggunakan
     semua kata di depan mydomain.com, tentunya selama sudah diaktifkan di
     nginx dulu. Ini juga berarti semua subdomain akan mengarah pada IP
