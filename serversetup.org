@@ -176,3 +176,9 @@ Panduan Install dan Setting Ubuntu Server dengan =nginx= dan =uwsgi=
   alamat =IP= maupun menggunakan nama /domain/ (jika sudah /resolve/ proses
   propagasinya).
   /Have fun with Python, Flask and Ubuntu!/
+
+* Bonus
+  Cek status reponse nginx dengan grep regex
+  #+BEGIN_SRC text
+    sudo tail -f /var/log/nginx/access.log | grep '\s[0-5]\{3\}\s'
+  #+END_SRC
