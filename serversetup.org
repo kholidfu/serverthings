@@ -182,3 +182,20 @@ Panduan Install dan Setting Ubuntu Server dengan =nginx= dan =uwsgi=
   #+BEGIN_SRC text
     sudo tail -f /var/log/nginx/access.log | grep '\s[0-5]\{3\}\s'
   #+END_SRC
+
+* additional ip address ubuntu 14.04
+  #+BEGIN_SRC text
+  sudo emacs /etc/network/interfaces
+
+  auto eth0:1
+  iface eth0:1 inet static
+  address 202.170.126.175
+  netmask 255.255.255.128
+  gateway 202.170.126.254
+  
+  git clone https://github.com/metral/restore_networking.git
+  cd restore_networking/
+  sudo ./restore_networking.sh
+  
+  sudo service networking restart
+  #+END_SRC
