@@ -49,7 +49,11 @@ Panduan Install dan Setting Ubuntu Server dengan =nginx= dan =uwsgi=
    #+BEGIN_SRC sh
     adduser sopier
     adduser sopier sudo
-    locale-gen en_US en_US.UTF-8
+    export LANGUAGE=en_US.UTF-8
+    export LANG=en_US.UTF-8
+    export LC_ALL=en_US.UTF-8
+    locale-gen en_US.UTF-8
+    dpkg-reconfigure locales
    #+END_SRC
 ** Install paket buat devel
    #+BEGIN_SRC sh
