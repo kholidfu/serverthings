@@ -183,9 +183,13 @@ Panduan Install dan Setting Ubuntu Server dengan =nginx= dan =uwsgi=
     sudo tail -f /var/log/nginx/access.log | grep '\s[0-5]\{3\}\s'
   #+END_SRC
 
-  Mongo error gak mau login di Ubnutu 14.10 x64
-  #+BEGIN_SRC text
-    export LC_ALL=en_US.UTF-8
+  Mongo error gak mau login di Ubuntu 14.10 x64
+  #+BEGIN_SRC sh
+    sudo locale-gen en_US.UTF-8
+    sudo dpkg-reconfigure locales
+    # add this to /etc/default/locale (new file)
+    LC_ALL=en_US.UTF-8
+    # reboot
   #+END_SRC
 
 * additional ip address ubuntu 14.04
