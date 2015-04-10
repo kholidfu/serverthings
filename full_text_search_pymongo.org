@@ -103,5 +103,5 @@
    #+END_SRC
    
 ** Note
-Semua perintah ini dijalankan pada mongo versi 2.2.x, 2.4.x dan 2.6.x. Saat tulisan ini diperbarui sudah muncul
+Semua perintah ini dijalankan pada mongo versi 2.4.x dan 2.6.x. Saat tulisan ini diperbarui sudah muncul
 mongodb versi 3, dan saya mengalami beberapa kendala. So please read again the docs!
