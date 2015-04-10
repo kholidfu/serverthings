@@ -84,7 +84,7 @@
    
       mongodump .
       
-   #END_SRC
+   #+END_SRC
    Tanda =.= berarti =disini=, artinya kita buat dulu folder misal mongbckup untuk menampung semua database
    yang ada.
 ** Restore
