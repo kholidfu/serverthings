@@ -78,3 +78,30 @@
      mongoexport --db terms --collection term --out terms.json
      
    #+END_SRC
+** Dump
+   Dump berguna untuk mem-backup semua database yang ada di os sekaligus
+   #+BEGIN_SRC sh
+   
+      mongodump .
+      
+   #END_SRC
+   Tanda =.= berarti =disini=, artinya kita buat dulu folder misal mongbckup untuk menampung semua database
+   yang ada.
+** Restore
+   Restore ini berguna untuk mengembalikan data backup ke sistem.
+   #+BEGIN_SRC sh
+   
+      mongorestore mongbckup/
+      
+   #+END_SRC
+   Perintah di atas berarti mengembalikan semua database yang ada di direktori =mongbckup= ke dalam sistem.
+   Jika diperlukan untuk me-restore ulang dengan cara menimpa, jalankan perintah berikut:
+   #+BEGIN_SRC sh
+   
+      mongorestore --drop mongbckup/
+      
+   #+END_SRC
+   
+** Note
+Semua perintah ini dijalankan pada mongo versi 2.2.x, 2.4.x dan 2.6.x. Saat tulisan ini diperbarui sudah muncul
+mongodb versi 3, dan saya mengalami beberapa kendala. So please read again the docs!
