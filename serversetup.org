@@ -52,6 +52,7 @@ Panduan Install dan Setting Ubuntu Server dengan =nginx= dan =uwsgi=
    #+END_SRC
 ** Install paket buat devel
    #+BEGIN_SRC sh
+    sudo apt-get update && sudo apt-get upgrade -y
     sudo apt-get install build-essential python-dev python-pip nginx emacs24-nox git
    #+END_SRC
 ** Install venv
